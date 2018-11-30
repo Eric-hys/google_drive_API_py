@@ -1,21 +1,18 @@
 import sys
-import codecs
-sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+import io
 
-
-#from __future__ import print_function
 from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
 
-# If modifying these scopes, delete the file token.json.
-SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly'
-
 class Gdrive():
     def __init__ (self):
+        # If modifying these scopes, delete the file token.json.
+        SCOPES = 'https://www.googleapis.com/auth/drive.metadata.readonly'
+        
         """Shows basic usage of the Drive v3 API.
-            Prints the names and ids of the first 10 files the user has access to.
-            """
+        Prints the names and ids of the first 10 files the user has access to.
+        """
         # The file token.json stores the user's access and refresh tokens, and is
         # created automatically when the authorization flow completes for the first
         # time.
@@ -41,8 +38,10 @@ def main():
     """
     
     google_drive = Gdrive()
+    # utf-8
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-    items = google_drive.get_file('1RqrUDMy9M07R8db496bVNnRqlB3YqgLj')
+    items = google_drive.get_file(YOUR_DRIVE_ID)
 
     if not items:
         print('No files found.')
