@@ -1,5 +1,9 @@
 # Google Drive API Sample Code
 
+## Get your credentials.json
+- https://developers.google.com/drive/api/v3/quickstart/python
+![](https://i.imgur.com/LZzWF55.png)
+
 ## Install the Google Client Library
 ```
 pip install --upgrade google-api-python-client oauth2client
